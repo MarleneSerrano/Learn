@@ -1,0 +1,51 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+#define F(t) ((9*t*t)-2)
+
+float df(float ta, float h)
+{
+        float t = ta + h;
+        return (F(t)-F(ta))/h;
+
+}
+
+int main()
+{
+        //puntos especificicos
+        float a;
+        float h = 0.01f;
+	float i,j, prom, sum = 0;
+	j=0;
+
+	for(float a=-5; a<=5; a+=0.5)
+	{
+	h = 0.01f;
+        printf("Para a= %f: %f\n: ",a,df(a,h));
+        a = 0.0f;
+	if(df(a,h) == 0)
+	      {
+        	cout<<"\nEl punto MÁx y/o MÍN es: %f\n "<<(float)df(a,h)<<endl;
+		j++;
+	      }
+	}
+
+	if(j==0)
+		cout<<"No se hallaron puntos máximos ni minímos.\n"<<endl;
+        j=0;
+	cout<<"\nIntersecciones en x:"<<endl;
+        for(float i=-5; i<=5; i+=0.001)
+	{
+	  if(F(i) < 0.2F && F(i) > 0.1F)
+           {
+              sum += F(i);
+	      j++;
+           }
+	}
+	prom = sum/(float)j;
+	cout<<"%f"<<prom<<endl;
+	cout<<"\nIntersecciones en Y: "<<endl;
+	cout<<"%f\n"<<(float)F(0)<<endl;
+        return 0;
+}

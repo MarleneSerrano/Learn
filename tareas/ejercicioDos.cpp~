@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <math.h>
+
+#define F(t) (2+(8*t)-(5*t*t))
+
+float dF(float ta, float h)
+{
+  float t= ta + h;
+  return (F(t)-F(ta))/h;
+}
+
+int main()
+{
+  float a,i,j, total, sum = 0;
+  float h = 0.01F;
+  j=0;
+
+  for(float a=-5; a<=5; a+=0.5)
+    {
+      h=0.01F;
+      printf("Para a= %f  : %f\n",a,dF(a,h));
+      h=0.00F;
+      if(dF(a,h) == 0)
+	{
+	  cout<<"\nPunto máximo y/o minímo: %f\n"<<(float)dF(a,h)<<endl;
+	  j++;
+	}
+    }
+  if(j==0)
+    cout<<"\nIntersecciones en x: "<<endl;
+  for(float i=-5; i<=5; i+=0.001)
+    {
+      if(F(i)<0.2F && F(i) > 0.1F)
+	{
+	  sum += F(i);
+	  j++;
+	}
+    }
+  total = sum/(float)j;
+  cout<<"%f", total<<endl;
+  cout<<"\nIntersecciones en Y: "<<endl;
+  cout<<"%f\n"<<(float)F(0)<<endl;
+  return 0;
+}

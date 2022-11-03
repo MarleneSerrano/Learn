@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define F(t)(sin(t)-cos(t)-1.1)
+
+float df(float ta, float h)
+{
+        float t = ta + h;
+        return (F(t) - F(ta))/h;
+}
+
+float resultados(float min, float fun, float derv)
+{
+        return (min - (fun/derv));
+}
+
+int main(void)
+{
+        float reslt[8];
+        float h = 2.5f;
+        float min, max;
+        int resultado, i, j;
+        float resmin, resmax;
+        system("clear");
+	/*        for (i=0; i<8; i++)
+        {
+                resultado = F(i);
+        	if (resultado < 0)
+                {
+                        resmin = resultado;
+                        min = i;
+                }
+                if (resultado > 0)
+                {
+                        resmax = resultado;
+                        max = i;
+                        break;
+                }
+        }
+	*/
+	min = -3.0;
+        reslt[0] = min;
+        printf ("\nResultado: %.2f", reslt[0]);
+        for (j=0; j<=8; j++)
+        {
+                reslt[j] = resultados(min, F(min), df(min,h));
+                printf ("\nResultado %d:  %f",j+1, reslt[j]);
+                min = reslt[j];
+        }
+
+        printf ("\n\n");
+        return 0;
+}

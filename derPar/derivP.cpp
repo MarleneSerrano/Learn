@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+#define F(x,y) (pow(x,2)+((x)+(y))+pow(y,2))
+
+float dfx(float x, float y, float h)
+	  {
+	    float xh = x+h;
+	    return (F(xh,y)-F((x-h),y))/(2*h);
+	  }
+
+float dfy(float x, float y, float h)
+{
+  float yh = y+h;
+  return (F(x, yh) - F(x,(y-h)))/(2*h);
+}
+
+int main()
+{
+  float x=1, y=1, h=0.01;
+  float result;
+
+  cout << "Derivada parcial en x" << endl;
+  result = dfx(x,y,h);
+  cout << result << endl;
+  cout << "Derivada parcial en y" << endl;
+  result = dfy(x,y,h);
+  cout << result << endl;
+
+  return 0;
+}
